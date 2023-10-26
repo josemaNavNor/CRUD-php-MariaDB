@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(83, 122, 160);
+}
+
+.table{
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 50%;
+    border-collapse: collapse;
+    margin-left: 350px;
+    margin-top: 200px;
+}
+
+.div{
+    width: 100%;
+}
+
+td,th{
+    border: 1px solid black;
+}
+
+th{
+    background-color: aqua;
+}
+
+td{
+    background-color: bisque;
+}
