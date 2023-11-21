@@ -2,9 +2,9 @@
 include('database/db.php');
 
 
-if (isset($_GET['ID_Propiedad'])) {
-    $ID_Propiedad = $_GET['ID_Propiedad'];
-    $query = "SELECT * FROM propiedad WHERE ID_Propiedad = $ID_Propiedad";
+if (isset($_GET['id'])) {
+    $ID_Propiedad = $_GET['id'];
+    $query = "SELECT * FROM propiedad WHERE id = $ID_Propiedad";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
@@ -15,12 +15,11 @@ if (isset($_GET['ID_Propiedad'])) {
         $num_habitantes = $row['num_habitantes'];
         $precio = $row['precio'];
         $estado = $row['estado'];
-        $agente = $row['FK_Agente'];
         
     }
 }
 if (isset($_POST['actualizar'])) {
-    $ID_Agente = $_GET['ID_Propiedad'];
+    $ID_Propiedad= $_GET['id'];
     $nombre = $_POST['nombre'];
     $direccion = $_POST['direccion'];
     $tamanio = $_POST['tamanio'];
@@ -30,7 +29,7 @@ if (isset($_POST['actualizar'])) {
     $agente = $_POST['FK_Agente'];
     
 
-    $query = "UPDATE propiedad SET nombre = '$nombre', direccion = '$direccion', tamanio = '$tamanio', num_habitantes = '$num_habitantes', precio = '$precio', estado = '$estado' WHERE ID_Propiedad = $ID_Propiedad";
+    $query = "UPDATE propiedad SET nombre = '$nombre', direccion = '$direccion', tamanio = '$tamanio', num_habitantes = '$num_habitantes', precio = '$precio', estado = '$estado' WHERE id = $ID_Propiedad";
     mysqli_query($conn, $query);
     header("Location: index_propiedad.php");
 }
@@ -42,7 +41,7 @@ if (isset($_POST['actualizar'])) {
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
-                <form action="update_propiedad.php?ID_Propiedad=<?php echo $_GET['ID_Propiedad']; ?>" method="POST">
+                <form action="update_propiedad.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
                     <div class="form-group" style="margin-top: 10px">
                         <input type="text" name="nombre" value="<?php echo $nombre; ?>" class="form-control"

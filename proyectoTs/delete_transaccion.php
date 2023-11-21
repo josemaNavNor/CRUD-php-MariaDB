@@ -2,9 +2,9 @@
 
     include("database/db.php");
     
-    if(isset($_GET['ID_Transaccion'])){ 
-        $ID_Transaccion = $_GET['ID_Transaccion'];
-        $query = "DELETE FROM transaccion WHERE ID_Transaccion = $ID_Transaccion";
+    if(isset($_GET['id'])){ 
+        $ID_Transaccion = $_GET['id'];
+        $query = "DELETE FROM transaccion WHERE id = $ID_Transaccion";
         $result = mysqli_query($conn, $query);
 
         if(!$result){

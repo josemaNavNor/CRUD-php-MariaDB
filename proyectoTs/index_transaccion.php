@@ -20,11 +20,6 @@
             <div class="card card-body">
                 <form action="save_transaccion.php" method="POST">
 
-                    <div>
-                        <input type="text" name="ID_Transaccion" placeholder="Id transaccion"
-                            style="margin-bottom: 10px; width: 100; text-align: center;">
-                    </div>
-
                     <div class="form-group">
                         <input type="date" name="fecha" class="form-control" style="margin-bottom: 10px;"
                             placeholder="Fecha" autofocus>
@@ -36,17 +31,15 @@
                     </div>
 
                     <div class="form-group" style="margin-buttom: 10px;">
-                        <input type="text" name="FK_Propiedad" class="form-control" placeholder="Propiedad" autofocus>
+                        <input type="text" name="ID_Propiedad" class="form-control" placeholder="Propiedad" autofocus>
                     </div>
 
                     <div class="form-group" style="margin-top: 10px;">
-                        <input type="text" name="FK_Cliente" class="form-control" placeholder="Cliente"
-                            autofocus>
+                        <input type="text" name="ID_Cliente" class="form-control" placeholder="Cliente" autofocus>
                     </div>
 
                     <div class="form-group" style="margin-top: 10px;">
-                        <input type="text" name="FK_Agente" class="form-control" placeholder="Agente"
-                            autofocus>
+                        <input type="text" name="ID_Agente" class="form-control" placeholder="Agente" autofocus>
                     </div>
 
 
@@ -62,12 +55,11 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Fecha</th>
-                        <th>Tipo</th>
                         <th>Propiedad</th>
                         <th>Cliente</th>
                         <th>Agente</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -79,7 +71,13 @@
                     while ($row = mysqli_fetch_array($result_transaccion)) { ?>
                         <tr>
                             <td>
-                                <?php echo $row['ID_Transaccion'] ?>
+                                <?php echo $row['ID_Propiedad'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['ID_Cliente'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['ID_Agente'] ?>
                             </td>
                             <td>
                                 <?php echo $row['fecha'] ?>
@@ -87,20 +85,12 @@
                             <td>
                                 <?php echo $row['tipo'] ?>
                             </td>
+
                             <td>
-                                <?php echo $row['FK_Propiedad'] ?>
+                                <a href="update_transaccion.php?id=<?php echo $row['id'] ?>">Editar</a>
                             </td>
                             <td>
-                                <?php echo $row['FK_Cliente'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['FK_Agente'] ?>
-                            </td>
-                            <td>
-                                <a href="update_transaccion.php?ID_Transaccion=<?php echo $row['ID_Transaccion']?>">Editar</a>
-                            </td>
-                            <td>
-                                <a href="delete_transaccion.php?ID_Transaccion=<?php echo $row['ID_Transaccion']?>">Eliminar</a>
+                                <a href="delete_transaccion.php?id=<?php echo $row['id'] ?>">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -111,6 +101,28 @@
                 <h2>Pagina principal</h2>
                 <p><a href="index.html">Aqui!</a></p>
             </div>
+
+            <div class="card card-body">
+                <form action="ETL.php" method="POST">
+                    <h2>Guardar fecha en dimension tiempo:</h1>
+
+                        <input type="submit" class="btn btn-success btn-block" class="form-center"
+                            style="margin-top:10px" name="save_fecha" value="Guardar">
+
+                </form>
+            </div>
+
+
+            <div class="card card-body">
+                <form action="ETL.php" method="POST">
+                    <h2>Guardar venta en Tabla de Hechos:</h1>
+
+                        <input type="submit" class="btn btn-success btn-block" class="form-center"
+                            style="margin-top:10px" name="save_venta" value="Guardar">
+
+                </form>
+            </div>
+
         </div>
     </div>
 

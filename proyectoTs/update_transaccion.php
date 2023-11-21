@@ -2,32 +2,32 @@
 include('database/db.php');
 
 
-if (isset($_GET['ID_Transaccion'])) {
-    $ID_Transaccion = $_GET['ID_Transaccion'];
-    $query = "SELECT * FROM transaccion WHERE ID_Transaccion = $ID_Transaccion";
+if (isset($_GET['id'])) {
+    $ID_Transaccion = $_GET['id'];
+    $query = "SELECT * FROM transaccion WHERE id = $ID_Transaccion";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
         $fecha = $row['fecha'];
         $tipo = $row['tipo'];
-        $propiedad = $row['FK_Propiedad'];
-        $cliente = $row['FK_Cliente'];
-        $agente = $row['FK_Agente'];
+        $propiedad = $row['ID_Propiedad'];
+        $cliente = $row['ID_Cliente'];
+        $agente = $row['ID_Agente'];
         
     }
 }
 if (isset($_POST['actualizar'])) {
-    $id = $_POST['ID_Transaccion'];
+    $id = $_POST['id'];
     $fecha = $_POST['fecha'];
     $tipo = $_POST['tipo'];
-    $propiedad = $_POST['FK_Propiedad'];
-    $cliente = $_POST['FK_Cliente'];
-    $agente = $_POST['FK_Agente'];
+    $propiedad = $_POST['ID_Propiedad'];
+    $cliente = $_POST['ID_Cliente'];
+    $agente = $_POST['ID_Agente'];
 
     
 
-    $query = "UPDATE transaccion SET fecha = '$fecha',  tipo = '$tipo' WHERE ID_Transaccion = $ID_Transaccion";
+    $query = "UPDATE transaccion SET fecha = '$fecha',  tipo = '$tipo' WHERE id = $ID_Transaccion";
     mysqli_query($conn, $query);
     header("Location: index_transaccion.php");
 }
@@ -39,7 +39,7 @@ if (isset($_POST['actualizar'])) {
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
-                <form action="update_transaccion.php?ID_Transaccion=<?php echo $_GET['ID_Transaccion']; ?>" method="POST">
+                <form action="update_transaccion.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
                     <div class="form-group" style="margin-top: 10px">
                         <input type="date" name="fecha" value="<?php echo $fecha; ?>" class="form-control"

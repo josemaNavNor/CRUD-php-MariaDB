@@ -2,9 +2,9 @@
 
     include("database/db.php");
     
-    if(isset($_GET['ID_Agente'])){ 
-        $ID_Agente = $_GET['ID_Agente'];
-        $query = "DELETE FROM agente WHERE ID_Agente = $ID_Agente";
+    if(isset($_GET['id'])){ 
+        $ID_Agente = $_GET['id'];
+        $query = "DELETE FROM agente WHERE id = $ID_Agente";
         $result = mysqli_query($conn, $query);
 
         if(!$result){

@@ -1,8 +1,9 @@
 <?php
-$conn = mysqli_connect(
+$connDM = mysqli_connect(
     "localhost:3307",
     "root",
     "123456",
-    "bienesraicesRV"
+    "bienesraicesDM"
 );
+
 ?>

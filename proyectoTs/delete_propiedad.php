@@ -2,9 +2,9 @@
 
     include("database/db.php");
     
-    if(isset($_GET['ID_Propiedad'])){ 
-        $ID_Propiedad = $_GET['ID_Propiedad'];
-        $query = "DELETE FROM propiedad WHERE ID_Propiedad = $ID_Propiedad";
+    if(isset($_GET['id'])){ 
+        $ID_Propiedad = $_GET['id'];
+        $query = "DELETE FROM propiedad WHERE id = $ID_Propiedad";
         $result = mysqli_query($conn, $query);
 
         if(!$result){

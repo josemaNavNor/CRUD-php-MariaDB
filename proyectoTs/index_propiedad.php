@@ -21,11 +21,6 @@
                 <form action="save_propiedad.php" method="POST">
 
                     <div class="form-group">
-                        <input type="text" name="ID_Propiedad" class="form-control" style="margin-bottom: 10px;"
-                            placeholder="ID propiedad" autofocus>
-                    </div>
-
-                    <div class="form-group">
                         <input type="text" name="nombre" class="form-control" style="margin-bottom: 10px;"
                             placeholder="Nombre propiedad" autofocus>
                     </div>
@@ -55,11 +50,6 @@
                             placeholder="Estado" autofocus>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="FK_Agente" class="form-control" style="margin-bottom: 10px;"
-                            placeholder="Agente" autofocus>
-                    </div>
-
                     <input type="submit" class="btn btn-success btn-block" class="form-center" style="margin-top:10px"
                         name="save" value="Guardar">
 
@@ -72,14 +62,12 @@
             <table class="table table-bordered" style="text-align:center">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Direccion</th>
                         <th>Tamanio</th>
                         <th>Numero Habitantes</th>
                         <th>Precio</th>
                         <th>Estado</th>
-                        <th>Agente</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -90,9 +78,6 @@
 
                     while ($row = mysqli_fetch_array($result_agente)) { ?>
                         <tr>
-                            <td>
-                                <?php echo $row['ID_Propiedad'] ?>
-                            </td>
                             <td>
                                 <?php echo $row['nombre'] ?>
                             </td>
@@ -112,13 +97,10 @@
                                 <?php echo $row['estado'] ?>
                             </td>
                             <td>
-                                <?php echo $row['FK_Agente'] ?>
+                                <a href="update_propiedad.php?id=<?php echo $row['id'] ?>">Editar</a>
                             </td>
                             <td>
-                                <a href="update_propiedad.php?ID_Propiedad=<?php echo $row['ID_Propiedad'] ?>">Editar</a>
-                            </td>
-                            <td>
-                                <a href="delete_propiedad.php?ID_Propiedad=<?php echo $row['ID_Propiedad'] ?>">Eliminar</a>
+                                <a href="delete_propiedad.php?id=<?php echo $row['id'] ?>">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -129,6 +111,17 @@
                 <h2>Pagina principal</h2>
                 <p><a href="index.html">Aqui!</a></p>
             </div>
+
+            <div class="card card-body">
+                <form action="ETL.php" method="POST">
+                    <h2>Guardar datos en dimension Propiedad:</h1>
+
+                    <input type="submit" class="btn btn-success btn-block" class="form-center" style="margin-top:10px"
+                        name="save" value="Guardar">
+
+                </form>
+            </div>
+
         </div>
     </div>
 

@@ -2,27 +2,27 @@
 include('database/db.php');
 
 
-if (isset($_GET['ID_Agente'])) {
-    $ID_Agente = $_GET['ID_Agente'];
-    $query = "SELECT * FROM agente WHERE ID_Agente = $ID_Agente";
+if (isset($_GET['id'])) {
+    $ID_Agente = $_GET['id'];
+    $query = "SELECT * FROM agente WHERE id = $ID_Agente";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
         $nombre = $row['nombre'];
         $num_telefono = $row['num_telefono'];
-        $correo = $row['correo'];
+        $correo = $row['correo_electronico'];
         $especialidad = $row['especialidad'];
     }
 }
 if (isset($_POST['actualizar'])) {
-    $ID_Agente = $_GET['ID_Agente'];
+    $ID_Agente = $_GET['id'];
     $nombre = $_POST['nombre'];
     $num_telefono = $_POST['num_telefono'];
-    $correo = $_POST['correo'];
+    $correo = $_POST['correo_electronico'];
     $especialidad = $_POST['especialidad'];
 
-    $query = "UPDATE agente SET nombre = '$nombre', num_telefono = '$num_telefono', correo = '$correo', especialidad = '$especialidad' WHERE ID_Agente = $ID_Agente";
+    $query = "UPDATE agente SET nombre = '$nombre', num_telefono = '$num_telefono', correo_electronico = '$correo', especialidad = '$especialidad' WHERE id = $ID_Agente";
     mysqli_query($conn, $query);
     header("Location: index_agente.php");
 }
@@ -34,7 +34,7 @@ if (isset($_POST['actualizar'])) {
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
-                <form action="update_agente.php?ID_Agente=<?php echo $_GET['ID_Agente']; ?>" method="POST">
+                <form action="update_agente.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
                     <div class="form-group" style="margin-top: 10px">
                         <input type="text" name="nombre" value="<?php echo $nombre; ?>" class="form-control"
@@ -47,7 +47,7 @@ if (isset($_POST['actualizar'])) {
                     </div>
 
                     <div class="form-group" style="margin-top: 10px">
-                        <input type="text" name="correo" value="<?php echo $correo; ?>" class="form-control"
+                        <input type="text" name="correo_electronico" value="<?php echo $correo; ?>" class="form-control"
                             placeholder="Actualiza el correo">
                     </div>
 

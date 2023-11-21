@@ -3,15 +3,15 @@
     include("database/db.php");
 
     if(isset($_POST['save'])){
-        $id = $_POST['ID_Transaccion'];
+        $id = $_POST['id'];
+        $propiedad = $_POST['ID_Propiedad'];
+        $cliente = $_POST['ID_Cliente'];
+        $agente = $_POST['ID_Agente'];
         $fecha = $_POST['fecha'];
         $tipo = $_POST['tipo'];
-        $propiedad = $_POST['FK_Propiedad'];
-        $cliente = $_POST['FK_Cliente'];
-        $agente = $_POST['FK_Agente'];
 
-        $query = "INSERT INTO transaccion (ID_Transaccion,fecha, tipo, FK_Propiedad, FK_Cliente, FK_Agente)
-        VALUES ('$id','$fecha', '$tipo', '$propiedad', '$cliente', '$agente')";
+        $query = "INSERT INTO transaccion (ID_Propiedad, ID_Cliente, ID_Agente, fecha, tipo)
+        VALUES ('$propiedad', '$cliente', '$agente', '$fecha', '$tipo')";
         $resultado = mysqli_query($conn,$query);
 
         if(!$resultado){

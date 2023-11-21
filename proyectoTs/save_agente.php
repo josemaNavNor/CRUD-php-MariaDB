@@ -3,14 +3,14 @@
     include("database/db.php");
 
     if(isset($_POST['save'])){
-        $id = $_POST['id_agente'];
-        $nombre = $_POST['nombre_agente'];
-        $num = $_POST['numero_telefono'];
-        $correo = $_POST['correo'];
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $num = $_POST['num_telefono'];
+        $correo = $_POST['correo_electronico'];
         $especialidad = $_POST['especialidad'];
         
-        $query = "INSERT INTO agente (ID_Agente,nombre, num_telefono, correo, especialidad)
-        VALUES ('$id','$nombre', '$num', '$correo', '$especialidad')";
+        $query = "INSERT INTO agente (nombre, num_telefono, correo_electronico, especialidad)
+        VALUES ('$nombre', '$num', '$correo', '$especialidad')";
         $resultado = mysqli_query($conn,$query);
 
         if(!$resultado){
